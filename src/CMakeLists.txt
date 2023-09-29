@@ -1,13 +1,12 @@
-file(GLOB SOURCES "*.cpp")
+add_executable(algo1 algo1.cpp)
+add_executable(algo2 algo2.cpp)
 
-add_executable(kcore ${SOURCES})
-
-include_directories(${PROJECT_SOURCE_DIR}/include)
-
-if (CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_compile_options(kcore PRIVATE -O3)
-endif()
-
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_options(kcore PRIVATE -g)
-endif()
+foreach(executable algo1 algo2)
+    target_include_directories(${executable} PRIVATE ${PROJECT_SOURCE_DIR}/include)
+    if (CMAKE_BUILD_TYPE STREQUAL "Release")
+        target_compile_options(${executable} PRIVATE -O3)
+    endif()
+    if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+        target_compile_options(kcore PRIVATE -g)
+    endif()
+endforeach()
