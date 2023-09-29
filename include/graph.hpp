@@ -8,19 +8,16 @@
 
 typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::undirectedS> Graph;
 
-Graph ReadGraphMtx(const std::string &filename)
+Graph ReadGraph(const std::string &filename)
 {
     std::ifstream file(filename);
     if (!file.is_open())
     {
-        throw std::runtime_error("Failed to open the MTX file.");
+        throw std::runtime_error("Failed to open the GMJ file.");
     }
 
-    std::string header;
-    std::getline(file, header);
-
     std::size_t n_vertices, n_edges;
-    file >> n_vertices >> n_vertices >> n_edges;
+    file >> n_vertices >> n_edges;
 
     Graph g;
     g.m_vertices.reserve(n_vertices);
@@ -33,6 +30,5 @@ Graph ReadGraphMtx(const std::string &filename)
     }
 
     file.close();
-
     return g;
 }
