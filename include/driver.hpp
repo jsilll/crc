@@ -4,11 +4,11 @@
 
 #include <iostream>
 
-std::vector<std::size_t> KCores(Graph &&g, std::size_t k);
+std::vector<std::size_t> KCores(Graph &&g, std::size_t k) noexcept;
 
 int Driver(const int argc, const char *argv[]) {
-  if (argc < 2) {
-    std::cerr << "Usage: " << argv[0] << " <graph file>" << std::endl;
+  if (argc < 3) {
+    std::cerr << "Usage: " << argv[0] << " <graph file> <k>\n";
     return EXIT_FAILURE;
   }
 
@@ -21,7 +21,20 @@ int Driver(const int argc, const char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  const auto vertices = KCores(std::move(g), 3);
+  std::size_t k;
+  try {
+    k = std::stoul(argv[2]);
+  } catch (const std::exception &e) {
+    std::cerr << "Invalid k value: " << argv[2] << '\n';
+    return EXIT_FAILURE;
+  }
+
+  if (k == 0) {
+    std::cerr << "k must be greater than 0\n";
+    return EXIT_FAILURE;
+  }
+
+  const auto vertices = KCores(std::move(g), k);
 
   for (const auto &v : vertices) {
     std::cout << v << '\n';
