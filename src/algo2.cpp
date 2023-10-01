@@ -1,27 +1,35 @@
 #include <driver.hpp>
 
-bool DfsHelper(const std::size_t v, Graph &g, std::vector<bool> &visited,
+#include <stack>
+
+bool DfsHelper(const std::size_t u, const Graph &g, std::vector<bool> &visited,
                std::vector<std::size_t> &degree, const std::size_t k) noexcept {
-  visited[v] = true;
-  if (degree[v] < k) {
-    for (auto it = boost::adjacent_vertices(v, g).first;
-         it != boost::adjacent_vertices(v, g).second; ++it) {
-      const auto u = *it;
-      --degree[u];
-      if (!visited[u]) {
-        DfsHelper(u, g, visited, degree, k);
+  std::stack<std::size_t> st;
+  st.push(u);
+  while (!st.empty()) {
+    const auto v = st.top();
+    st.pop();
+    visited[v] = true;
+    if (degree[v] < k) {
+      for (auto it = boost::adjacent_vertices(v, g).first;
+           it != boost::adjacent_vertices(v, g).second; ++it) {
+        const auto w = *it;
+        --degree[w];
+        if (!visited[w]) {
+          st.push(w);
+        }
       }
-    }
-  } else {
-    for (auto it = boost::adjacent_vertices(v, g).first;
-         it != boost::adjacent_vertices(v, g).second; ++it) {
-      const auto u = *it;
-      if (!visited[u]) {
-        DfsHelper(u, g, visited, degree, k);
+    } else {
+      for (auto it = boost::adjacent_vertices(v, g).first;
+           it != boost::adjacent_vertices(v, g).second; ++it) {
+        const auto w = *it;
+        if (!visited[w]) {
+          st.push(w);
+        }
       }
     }
   }
-  return degree[v] < k;
+  return degree[u] < k;
 }
 
 std::vector<std::size_t> KCores(Graph &&g, const std::size_t k) noexcept {
