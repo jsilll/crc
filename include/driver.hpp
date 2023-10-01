@@ -21,7 +21,7 @@ int Driver(const int argc, const char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  std::size_t k;
+  std::size_t k = 0;
   try {
     k = std::stoul(argv[2]);
   } catch (const std::exception &e) {
