@@ -27,14 +27,14 @@ std::vector<std::size_t> KCores(Graph &&g, const std::size_t k) noexcept {
     }
     boost::clear_vertex(u, g);
   }
-  std::vector<std::size_t> core;
-  core.reserve(boost::num_vertices(g));
+  std::vector<std::size_t> cores;
+  cores.reserve(boost::num_vertices(g));
   for (std::size_t i = 0; i < boost::num_vertices(g); ++i) {
     if (boost::degree(i, g) >= k) {
-      core.push_back(i);
+      cores.push_back(i);
     }
   }
-  return core;
+  return cores;
 }
 
 int main(const int argc, const char *argv[]) noexcept {

@@ -6,10 +6,10 @@ bool DfsHelper(const std::size_t u, const Graph &g, std::vector<bool> &visited,
                std::vector<std::size_t> &degree, const std::size_t k) noexcept {
   std::stack<std::size_t> st;
   st.push(u);
+  visited[u] = true;
   while (!st.empty()) {
     const auto v = st.top();
     st.pop();
-    visited[v] = true;
     if (degree[v] < k) {
       for (auto it = boost::adjacent_vertices(v, g).first;
            it != boost::adjacent_vertices(v, g).second; ++it) {
@@ -17,6 +17,7 @@ bool DfsHelper(const std::size_t u, const Graph &g, std::vector<bool> &visited,
         --degree[w];
         if (!visited[w]) {
           st.push(w);
+          visited[w] = true;
         }
       }
     } else {
@@ -25,6 +26,7 @@ bool DfsHelper(const std::size_t u, const Graph &g, std::vector<bool> &visited,
         const auto w = *it;
         if (!visited[w]) {
           st.push(w);
+          visited[w] = true;
         }
       }
     }
@@ -34,7 +36,6 @@ bool DfsHelper(const std::size_t u, const Graph &g, std::vector<bool> &visited,
 
 std::vector<std::size_t> KCores(Graph &&g, const std::size_t k) noexcept {
   std::vector<bool> visited(boost::num_vertices(g), false);
-  std::vector<bool> processed(boost::num_vertices(g), false);
   std::vector<std::size_t> degree(boost::num_vertices(g), 0);
 
   std::size_t start_vertex = 0;
@@ -66,14 +67,14 @@ std::vector<std::size_t> KCores(Graph &&g, const std::size_t k) noexcept {
       degree[i] = count;
     }
   }
-  std::vector<std::size_t> core;
-  core.reserve(boost::num_vertices(g));
+  std::vector<std::size_t> cores;
+  cores.reserve(boost::num_vertices(g));
   for (std::size_t i = 0; i < boost::num_vertices(g); ++i) {
     if (degree[i] >= k) {
-      core.push_back(i);
+      cores.push_back(i);
     }
   }
-  return core;
+  return cores;
 }
 
 int main(const int argc, const char *argv[]) noexcept {
