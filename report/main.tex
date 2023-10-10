@@ -1,0 +1,63 @@
+\documentclass[a4paper, 11pt]{article}
+
+\usepackage{bm}  
+\usepackage{pdfsync}  
+\usepackage{textcomp}
+\usepackage{graphicx} 
+\usepackage{fancyhdr}
+\usepackage{memhfixc} 
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}  
+\usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref}  
+\usepackage[top=3cm, bottom=3cm, left = 2cm, right = 2cm]{geometry} 
+\usepackage{etoolbox}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\AtBeginEnvironment{abstract}{\setlength{\parindent}{0pt}}
+
+\usepackage{indentfirst}
+
+\geometry{a4paper} 
+\hypersetup{linkcolor=black,citecolor=black,filecolor=black,urlcolor=black}
+
+\title{Network Science Project \\ \textbf{Finding K-Cores of a Graph}}
+\author{Guilherme Gonçalves \and João Silveira \and Manuel Brito}
+\date{\today}
+
+\begin{document}
+
+% -- First page --
+\maketitle
+
+% -- ABSTRACT % --
+
+% To remove indentation before abstract
+\begin{abstract}
+Dummy Abstract
+\clearpage
+\end{abstract}
+
+% -- Table of contents --
+\clearpage
+\tableofcontents
+\clearpage
+
+% -- Introduction --
+\section{Introduction}
+\input{sections/Introduction}
+
+% -- Algorithms Overview --
+\section{Algorithms Overview}
+\input{sections/Algorithms}
+
+% -- Evaluation --
+\section{Evaluation}
+\input{sections/Evaluation}
+
+% -- Conclusion --
+\section{Conclusion}
+\input{sections/Conclusion}
+
+% -- Bibliography --
+\bibliographystyle{abbrv}
+% \bibliography{references}
+\end{document}
