@@ -1,0 +1,37 @@
+\begin{algorithm}[htb]
+    \label{algo:degree-pruning}
+    \caption{Degree-Pruning Algorithm}
+    
+    \SetKwFunction{Kcores}{KCores}
+    \SetKwProg{Fn}{Function}{:}{}
+    \Fn{\Kcores{$g$, $k$}}{
+        $q \leftarrow$ empty queue of size $|V|$\;
+        $degree \leftarrow$ array of size $|V|$ (initialized with degrees of vertices in $g$)\;
+        \For{$i \leftarrow 0$ \KwTo $|V| - 1$}{
+            $d \leftarrow$ degree of vertex $i$ in $g$\;
+            \If{$d < k$}{
+                $q$.enqueue($i$)\;
+            }
+            $degree[i] \leftarrow d$\;
+        }
+        \While{$q$ is not empty}{
+            $u \leftarrow q$.dequeue()\;
+            \ForEach{neighbor $v$ of $u$ in $g$}{
+                \If{$degree[v] \geq k$}{
+                    $degree[v] \leftarrow degree[v] - 1$\;
+                    \If{$degree[v] < k$}{
+                        $q$.enqueue($v$)\;
+                    }
+                }
+            }
+            Remove vertex $u$ from $g$\;
+        }
+        $cores \leftarrow$ empty list\;
+        \For{$i \leftarrow 0$ \KwTo $|V| - 1$}{
+            \If{degree of vertex $i$ in $g \geq k$}{
+                $cores$.append($i$)\;
+            }
+        }
+        \KwRet $cores$\;
+    }
+\end{algorithm}

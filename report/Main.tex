@@ -6,15 +6,15 @@
 \usepackage{graphicx} 
 \usepackage{fancyhdr}
 \usepackage{memhfixc} 
+\usepackage{etoolbox}
+\usepackage{indentfirst}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath,amssymb}  
 \usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref}  
 \usepackage[top=3cm, bottom=3cm, left = 2cm, right = 2cm]{geometry} 
-\usepackage{etoolbox}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
-\AtBeginEnvironment{abstract}{\setlength{\parindent}{0pt}}
 
-\usepackage{indentfirst}
+\AtBeginEnvironment{abstract}{\setlength{\parindent}{0pt}}
 
 \geometry{a4paper} 
 \hypersetup{linkcolor=black,citecolor=black,filecolor=black,urlcolor=black}
@@ -25,39 +25,30 @@
 
 \begin{document}
 
-% -- First page --
 \maketitle
 
-% -- ABSTRACT % --
-
-% To remove indentation before abstract
 \begin{abstract}
-Dummy Abstract
+TODO
 \clearpage
 \end{abstract}
 
-% -- Table of contents --
 \clearpage
 \tableofcontents
 \clearpage
 
-% -- Introduction --
 \section{Introduction}
-\input{sections/Introduction}
+\input{Sections/Introduction}
 
-% -- Algorithms Overview --
 \section{Algorithms Overview}
-\input{sections/Algorithms}
+\input{Sections/Algorithms}
 
-% -- Evaluation --
 \section{Evaluation}
-\input{sections/Evaluation}
+\input{Sections/Evaluation}
 
-% -- Conclusion --
 \section{Conclusion}
-\input{sections/Conclusion}
+\input{Sections/Conclusion}
 
-% -- Bibliography --
+\clearpage
 \bibliographystyle{abbrv}
-% \bibliography{references}
+\bibliography{Bibliography}
 \end{document}

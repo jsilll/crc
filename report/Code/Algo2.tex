@@ -1,0 +1,68 @@
+\begin{algorithm}[htb]
+    \label{algo:dfs-based}
+    \caption{Depth-First Search Based Algorithm}
+
+    \SetKwFunction{DFS}{DFS}
+    \SetKwFunction{FindKCoresDFS}{findKCoresDFS}
+    \SetKwProg{Fn}{Function}{:}{}
+    \Fn{\DFS{$u$, $g$, $visited$, $degree$, $k$}}{
+        stack $\leftarrow$ empty stack\;
+        stack.push($u$)\;
+        visited[$u$] $\leftarrow$ true\;
+
+        \While{stack is not empty}{
+            $v \leftarrow$ stack.pop()\;
+            \If{$degree[v] < k$}{
+                \ForEach{neighbor $w$ of $v$ in $g$}{
+                    \If{not visited[$w$]}{
+                        stack.push($w$)\;
+                        visited[$w$] $\leftarrow$ true\;
+                        $degree[w] \leftarrow degree[w] - 1$\;
+                    }
+                }
+            }
+            \Else{
+                \ForEach{neighbor $w$ of $v$ in $g$}{
+                    \If{not visited[$w$]}{
+                        stack.push($w$)\;
+                        visited[$w$] $\leftarrow$ true\;
+                    }
+                }
+            }
+        }
+    }
+    \Fn{\FindKCoresDFS{$g$, $k$}}{
+        visited $\leftarrow$ array of size $|V|$ (initialized to false)\;
+        degree $\leftarrow$ array of size $|V|$ (initialized with degrees of vertices in $g$)\;
+        startVertex $\leftarrow$ vertex with minimum degree in $g$\;
+
+        \DFS{startVertex, $g$, visited, degree, $k$}\;
+
+        \ForEach{vertex $v$ in $g$}{
+            \If{not visited[$v$]}{
+                \DFS{$v$, $g$, visited, degree, $k$}\;
+            }
+        }
+
+        \ForEach{vertex $v$ in $g$}{
+            \If{$degree[v] \geq k$}{
+                count $\leftarrow$ 0\;
+                \ForEach{neighbor $w$ of $v$ in $g$}{
+                    \If{$degree[w] \geq k$}{
+                        count $\leftarrow$ count + 1\;
+                    }
+                }
+                $degree[v] \leftarrow$ count\;
+            }
+        }
+
+        cores $\leftarrow$ empty list\;
+        \ForEach{vertex $v$ in $g$}{
+            \If{$degree[v] \geq k$}{
+                cores.append($v$)\;
+            }
+        }
+
+        \KwRet cores\;
+    }
+\end{algorithm}
