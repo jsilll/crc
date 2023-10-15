@@ -20,9 +20,7 @@ The time complexity will depend on two factors: the dequeuing (which has a time 
 
 \subsubsection{Overview}
 
-The algorithm initializes a \texttt{visited} array to keep track of the already visited vertices and a \texttt{degree} array to store the degrees of vertices in the graph \(g\). The depth-first search (DFS) traversal begins with a vertex having the minimum degree. During the DFS, it decrements the degrees of neighbors, marking them as visited if their degrees drop below \(k\). To handle the edge case where the graph is composed of various disconnected components, the algorithm performs subsequent DFS passes on the remaining unvisited vertices until all vertices are visited.
-    
-After performing all the depth-first searches, the algorithm performs a final pass over the vertices to adjust their degrees based on their neighbors with degrees greater than or equal to \(k\). Finally, vertices with degrees greater than or equal to \(k\) are collected into the \texttt{cores} list, forming the K-Cores subgraph. The code for this algorithm is presented in \ref{algo:dfs-based}.
+The algorithm initializes a \texttt{visited} array to keep track of the already visited vertices and a \texttt{degree} array to store the degrees of vertices in the graph \(g\). The depth-first search (DFS) traversal begins with a vertex having the minimum degree. During the DFS, it decrements the degrees of neighbors, marking them as visited if their degrees drop below \(k\). To handle the edge case where the graph is composed of various disconnected components, the algorithm performs subsequent DFS passes on the remaining unvisited vertices until all vertices are visited. After performing all the depth-first searches, the algorithm performs a final pass over the vertices to adjust their degrees based on their neighbors with degrees greater than or equal to \(k\). Finally, vertices with degrees greater than or equal to \(k\) are collected into the \texttt{cores} list, forming the K-Cores subgraph. The code for this algorithm is presented in \ref{algo:dfs-based}.
 
 \input{Code/Algo2.tex}
 
