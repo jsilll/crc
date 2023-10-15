@@ -1,12 +1,8 @@
-#pragma once
-
-#include <graph.hpp>
+#include <algo2.hpp>
 
 #include <iostream>
 
-std::vector<std::size_t> KCores(Graph &&g, std::size_t k) noexcept;
-
-int Driver(const int argc, const char *argv[]) {
+int main(const int argc, const char *argv[]) {
   if (argc < 3) {
     std::cerr << "Usage: " << argv[0] << " <graph file> <k>\n";
     return EXIT_FAILURE;
@@ -34,7 +30,7 @@ int Driver(const int argc, const char *argv[]) {
     return EXIT_FAILURE;
   }
 
-  const auto vertices = KCores(std::move(g), k);
+  const auto vertices = Algo2(std::move(g), k);
 
   for (const auto &v : vertices) {
     std::cout << v << '\n';

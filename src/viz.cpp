@@ -1,8 +1,8 @@
 #include <graph.hpp>
 
-#include <boost/graph/graphviz.hpp>
-
 #include <iostream>
+
+#include <boost/graph/graphviz.hpp>
 
 int main(const int argc, const char *argv[]) noexcept {
   if (argc < 2) {

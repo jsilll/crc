@@ -1,8 +1,10 @@
-#include <driver.hpp>
+#pragma once
+
+#include <graph.hpp>
 
 #include <queue>
 
-std::vector<std::size_t> KCores(Graph &&g, const std::size_t k) noexcept {
+std::vector<std::size_t> Algo1(Graph &&g, const std::size_t k) noexcept {
   std::queue<std::size_t> q;
   std::vector<std::size_t> degree(boost::num_vertices(g), 0);
   for (std::size_t i = 0; i < boost::num_vertices(g); ++i) {
@@ -35,8 +37,4 @@ std::vector<std::size_t> KCores(Graph &&g, const std::size_t k) noexcept {
     }
   }
   return cores;
-}
-
-int main(const int argc, const char *argv[]) noexcept {
-  return Driver(argc, argv);
 }

@@ -1,4 +1,6 @@
-#include <driver.hpp>
+#pragma once
+
+#include <graph.hpp>
 
 #include <stack>
 
@@ -34,7 +36,7 @@ bool DfsHelper(const std::size_t u, const Graph &g, std::vector<bool> &visited,
   return degree[u] < k;
 }
 
-std::vector<std::size_t> KCores(Graph &&g, const std::size_t k) noexcept {
+std::vector<std::size_t> Algo2(Graph &&g, const std::size_t k) noexcept {
   std::vector<bool> visited(boost::num_vertices(g), false);
   std::vector<std::size_t> degree(boost::num_vertices(g), 0);
 
@@ -75,8 +77,4 @@ std::vector<std::size_t> KCores(Graph &&g, const std::size_t k) noexcept {
     }
   }
   return cores;
-}
-
-int main(const int argc, const char *argv[]) noexcept {
-  return Driver(argc, argv);
 }
