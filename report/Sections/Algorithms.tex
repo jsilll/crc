@@ -4,48 +4,32 @@
 
 \subsubsection{Overview}
 
-The degree-running algorithm is a widely used and efficient method for discovering k-cores within a graph. It accomplishes this by utilizing the concept of "vertex degree," which denotes the number of edges connected to a vertex. This algorithm progressively removes vertices and edges with degrees less than the desired k, ultimately revealing the k-core structure of the graph. It is especially effective in scenarios where the graph is sparse or moderately dense, making it a valuable tool for various network analysis tasks. In summary, the algorithm leverages vertex degrees to iteratively prune the graph until the desired k-core is achieved, providing insights into network organization.
+The degree-prunning algorithm is a widely used and efficient method for discovering k-cores within a graph. This algorithm progressively removes vertices and edges with degrees less than the desired k, ultimately revealing the k-core structure of the graph. It is especially effective in scenarios where the graph is sparse or moderately dense, making it a valuable tool for various network analysis tasks. 
 
-Initially, the algorithm calculates the degree of every node and enqueues nodes with degrees less than $k$. Subsequently, it dequeues nodes from the queue one at a time, removes them from the graph, and decreases the degrees of their neighbors. If, at any stage, a node's degree falls below $k$, it is also placed in the queue for removal. Ultimately, only the k-core of the graph remains intact after this process. A pseudo-code for the algorithm in question can be found in algorithm \ref{algo:degree-pruning}
+Initially, the algorithm calculates the degree of every node and enqueues nodes with degrees less than $k$. Subsequently, it dequeues nodes from the queue one at a time, removes them from the graph, and decreases the degrees of their neighbors. If, at any stage, any of the neighbors' degrees fall below $k$, it is also placed in the queue for removal. Ultimately, only the k-core of the graph remains intact after this process. The code for this algorithm is presented in \ref{algo:degree-pruning}.
 
 \input{Code/Algo1.tex}
 
 \subsubsection{Complexity Analysis}
 
-Computing the space complexity of this algorithm is trivial, since it uses a vector of size $|G|$ and a queue that can have atmost the same size. Thus, we can say that the space complexity is $O(|G|)$, meaning that the space complexity is $O(V)$.
+Computing the space complexity of this algorithm is trivial, since it uses a vector of size $|V|$ and a queue that can have atmost that same size. Thus, we can say that the space complexity is $O(|V|)$, meaning that it is linear in the number of vertices of the graph.
 
-The time complexity will depend on two factors: the dequeuing (which has a time complexity of $O(V)$, since if there is no k-core all nodes will end up in the queue) loop and visiting the neighbours (which has a time complexity, in the worst case, equal to the number of edges, $O(E)$). Therefore, the final complexity is $O(V + E)$. Not that the number $k$ influences the complexity, because nodes are added to the queue, and, consequently more neighbours are visited, based on the relationship between their degree and $k$
+The time complexity will depend on two factors: the dequeuing (which has a time complexity of $O(V)$, since if there is no k-core all nodes will end up in the queue) loop and visiting the neighbours (which has a time complexity, in the worst case, equal to the number of edges, $O(E)$). Therefore, the final complexity is $O(V + E)$.
 
 \subsection{Depth-First Search Based Algorithm}
 
 \subsubsection{Overview}
 
-The \textbf{K-Cores Algorithm} aims to identify the subgraph formed by vertices with degrees greater than or equal to a specified threshold \(k\). Utilizing a Depth-First Search (DFS) strategy, the algorithm efficiently explores the graph structure to identify the K-Cores.
-
-\begin{enumerate}
-    \item \textbf{Initialization:} The algorithm initializes a \texttt{visited} array to keep track of visited vertices and a \texttt{degree} array to store the degrees of vertices in the graph \(g\). The DFS traversal begins with a vertex having the minimum degree.
+The algorithm initializes a \texttt{visited} array to keep track of the already visited vertices and a \texttt{degree} array to store the degrees of vertices in the graph \(g\). The depth-first search (DFS) traversal begins with a vertex having the minimum degree. During the DFS, it decrements the degrees of neighbors, marking them as visited if their degrees drop below \(k\). To handle the edge case where the graph is composed of various disconnected components, the algorithm performs subsequent DFS passes on the remaining unvisited vertices until all vertices are visited.
     
-    \item \textbf{Depth-First Search (DFS):} The algorithm performs a DFS traversal starting from the initial vertex. During DFS, it decrements the degrees of neighbors, marking them as visited if their degrees drop below \(k\). Disconnected components are handled by subsequent DFS passes.
-    
-    \item \textbf{Degree Adjustment:} After DFS, the algorithm adjusts the degrees of vertices based on their neighbors with degrees greater than or equal to \(k\).
-    
-    \item \textbf{Identifying K-Cores:} Vertices with degrees greater than or equal to \(k\) are collected into the \texttt{cores} list, forming the K-Cores subgraph.
-\end{enumerate}
-
-\begin{itemize}
-    \item \textbf{DFS Traversal:} The algorithm explores the graph using DFS, adjusting degrees and marking vertices as visited based on their degrees and neighbors' degrees.
-    
-    \item \textbf{Degree Adjustment:} Degrees of vertices are recalculated based on their neighbors with degrees greater than or equal to \(k\).
-    
-    \item \textbf{Subgraph Construction:} Vertices with degrees above or equal to \(k\) are added to the \texttt{cores} list, forming the K-Cores subgraph of the input graph.
-\end{itemize}
+After performing all the depth-first searches, the algorithm performs a final pass over the vertices to adjust their degrees based on their neighbors with degrees greater than or equal to \(k\). Finally, vertices with degrees greater than or equal to \(k\) are collected into the \texttt{cores} list, forming the K-Cores subgraph. The code for this algorithm is presented in \ref{algo:dfs-based}.
 
 \input{Code/Algo2.tex}
 
 \subsubsection{Complexity Analysis}
 
-\begin{itemize}
-    \item \textbf{Time Complexity:} The algorithm's time complexity is determined by the DFS traversal and is generally linear in the number of edges and vertices.
+The algorithm's space complexity depends on the storage of the \texttt{visited} and \texttt{degree} arrays. Since the arrays are of size \(|V|\), the space complexity is also \(O(|V|)\), which is linear in the number of vertices of the graph.
+
+The algorithm's time complexity is determined by the DFS traversals which are known to have a time complexity of \(O(V + E)\). Therefore, the final time complexity is \(O(V + E)\).
     
-    \item \textbf{Space Complexity:} The algorithm's space complexity primarily depends on the storage of the \texttt{visited} and \texttt{degree} arrays, making it linear in the number of vertices.
-\end{itemize}
+    

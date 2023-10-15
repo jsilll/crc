@@ -1,12 +1,11 @@
 \begin{algorithm}[htb]
     \label{algo:degree-pruning}
     \caption{Degree-Pruning Algorithm}
-    
     \SetKwFunction{Kcores}{KCores}
     \SetKwProg{Fn}{Function}{:}{}
     \Fn{\Kcores{$g$, $k$}}{
-        $q \leftarrow$ empty queue of size $|V|$\;
-        $degree \leftarrow$ array of size $|V|$ (initialized with degrees of vertices in $g$)\;
+        $q \leftarrow$ empty queue\;
+        $degree \leftarrow$ array of size $|V|$\;
         \For{$i \leftarrow 0$ \KwTo $|V| - 1$}{
             $d \leftarrow$ degree of vertex $i$ in $g$\;
             \If{$d < k$}{
