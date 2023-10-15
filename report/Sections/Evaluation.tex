@@ -1,6 +1,10 @@
 \label{Evaluation}
 
-In order to evaluate the performance of both alorithms, we decided to implemented them in C++ using the Boost Graph Library's (BGL) \footnote{\url{https://www.boost.org/doc/libs/1_82_0/libs/graph/doc/index.html}} graph data structure. This allowed us to easily generate random graph instances and to use the BGL's built-in functions to visualize the graphs and the k-cores. Moreover, having the both algorithms implemented in the same language and using the same graph data structure allowed us to compare them in a fair way.
+In order to evaluate the performance of both alorithms, we implemented them in C++ \footnote{\url{https://github.com/jsilll/crc}} using the Boost Graph Library's (BGL) \footnote{\url{https://www.boost.org/doc/libs/1_82_0/libs/graph/doc/index.html}} graph data structure. This allowed us to easily generate random graph instances and to use the BGL's built-in functions to visualize the graphs and the k-cores. Moreover, having the both algorithms implemented in the same language and using the same graph data structure allowed us to compare them in a fair way.
+
+To benchmark the algorithms, we used various graphs from the Stanford Network Analysis Project (SNAP) \footnote{\url{https://snap.stanford.edu/data/}}. We ran the algorithms for all the $k$ values between 1 and the maximum degree of the graph. The results are presented in figures \ref{fig:amazon}, \ref{fig:cit-patents}, \ref{fig:tech-as-skitter}, \ref{fig:web-google} and \ref{fig:wikitalk}.
+
+All the benchmarks were run on a computer with an Intel Core i5-8250U CPU and 8GB of RAM. The operating system was Fedora 38. The compiler used was Clang 16.0.4. The compiler flags used were \texttt{-O3} and \texttt{-march=native}.
 
 \begin{figure}[H]
     \centering
@@ -35,4 +39,6 @@ In order to evaluate the performance of both alorithms, we decided to implemente
     \includegraphics[width=0.6\textwidth]{Figures/WikiTalk.png}
     \caption{WikiTalk benchmark times for both algorithms}
     \label{fig:wikitalk}
-\end{figure}
+\end{figure} 
+
+The results show that the depth-first search based algorithm is consistently much faster than the degree-pruning algorithm. This is possibly due to the removal of vertices and edges in the degree-pruning algorithm, which is a costly operation. The depth-first search based algorithm, on the other hand, only needs to keep track of the degrees of the vertices and the visited vertices, which is a much simpler task.
