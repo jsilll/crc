@@ -27,10 +27,21 @@
 \begin{document}
 
 \maketitle
+\begin{abstract}
+The K-Cores Problem stands as a powerful paradigm in the realms of graph theory and network analysis, offering nuanced insights into the intricate web of interconnected systems. Its implications span various domains, empowering researchers and analysts to unravel the mysteries of complex networks.
+
+In the context of social networks, the identification of K-Cores sheds light on tightly-knit communities, enriching our comprehension of human interactions and social dynamics. In biological networks, it aids in pinpointing critical elements, opening doors to advancements in disease research and drug discovery. When applied to internet and web graphs, K-Cores unveil the backbone of the digital realm, highlighting pivotal websites and content hubs. Moreover, within transportation and infrastructure networks, K-Cores pinpoint critical nodes, optimizing traffic flow and fortifying urban planning strategies.
+
+In our pursuit of K-Core identification within graphs, we evaluated two algorithms, namely the Degree Pruning algorithm and a Depth-First Search approach tailored to the K-Cores problem. The findings unequivocally favor the Depth-First Search approach due to factors such as queue size and node duplication, rendering it significantly more efficient than the Degree Pruning Algorithm. However, it's crucial to acknowledge that these conclusions are influenced by the specific benchmarks employed, and alternative benchmarks may yield different results.
+
+While further exploration in this domain is warranted, as discussed in Section \ref{FutureWork}, this study contributes to the ongoing quest to identify the most efficient algorithms for solving the K-Cores problem. As networks continue to evolve and grow in complexity, the K-Cores Problem maintains its status as a cornerstone for understanding their underlying structures. Its applications across diverse fields underscore its significance, establishing it as an indispensable tool in the arsenal of network analysts and researchers worldwide.
+\end{abstract}
+
 
 \clearpage
 \tableofcontents
 \clearpage
+
 
 \section{Introduction}
 \input{Sections/Introduction}
@@ -43,6 +54,7 @@
 
 \section{Future Work}
 \input{Sections/FutureWork}
+\label{FutureWork}
 
 \section{Conclusion}
 \input{Sections/Conclusion}

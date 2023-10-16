@@ -41,4 +41,10 @@ All the benchmarks were run on a computer with an Intel Core i5-8250U CPU and 8G
     \label{fig:wikitalk}
 \end{figure} 
 
-The results show that the depth-first search based algorithm is consistently much faster than the degree-pruning algorithm. This is possibly due to the removal of vertices and edges in the degree-pruning algorithm, which is a costly operation. The depth-first search based algorithm, on the other hand, only needs to keep track of the degrees of the vertices and the visited vertices, which is a much simpler task.
+The results consistently demonstrate that the depth-first search-based algorithm outperforms the degree-pruning algorithm significantly. Several factors contribute to this performance difference. 
+
+To begin with, the process of removing vertices and edges in the degree-pruning algorithm is computationally expensive. In contrast, the depth-first search-based algorithm simply maintains information about vertex degrees and visited vertices, which is a considerably simpler task. 
+
+Secondly, the degree-pruning algorithm allows a node to be inserted multiple times, leading to a larger queue that needs to be processed. In contrast, the depth-first search-based algorithm traverses each node only once by effectively tracking visited nodes.
+
+Lastly, the degree-pruning algorithm is akin to a breadth-first search approach tailored to uncover the k-cores of a graph. Given this resemblance and the specific benchmarks considered, opting for a depth-first search-based algorithm offers performance benefits, resulting in consistently faster execution times than the degree-pruning algorithm.
