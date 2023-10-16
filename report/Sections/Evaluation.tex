@@ -2,44 +2,25 @@
 
 In order to evaluate the performance of both alorithms, we implemented them in C++ \footnote{\url{https://github.com/jsilll/crc}} using the Boost Graph Library's (BGL) \footnote{\url{https://www.boost.org/doc/libs/1_82_0/libs/graph/doc/index.html}} graph data structure. This allowed us to easily generate random graph instances and to use the BGL's built-in functions to visualize the graphs and the k-cores. Moreover, having the both algorithms implemented in the same language and using the same graph data structure allowed us to compare them in a fair way.
 
-To benchmark the algorithms, we used various graphs from the Stanford Network Analysis Project (SNAP) \footnote{\url{https://snap.stanford.edu/data/}}. We ran the algorithms for all the $k$ values between 1 and the maximum degree of the graph. The results are presented in figures \ref{fig:amazon}, \ref{fig:cit-patents}, \ref{fig:tech-as-skitter}, \ref{fig:web-google} and \ref{fig:wikitalk}.
+To benchmark the algorithms, we used various graphs from the Stanford Network Analysis Project (SNAP) \footnote{\url{https://snap.stanford.edu/data/}}. We ran the algorithms for all the $k$ values between 1 and the maximum degree of the graph. The results are presented in figures \ref{fig:Amazon_CitPatents} and \ref{fig:skitter_google_wiki}.
 
 All the benchmarks were run on a computer with an Intel Core i5-8250U CPU and 8GB of RAM. The operating system was Fedora 38. The compiler used was Clang 16.0.4. The compiler flags used were \texttt{-O3} and \texttt{-march=native}.
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{Figures/Amazon0302-1.png}
-    \caption{Amazon0302 benchmark times for both algorithms}
-    \label{fig:amazon}
+    \includegraphics[width=0.48\textwidth]{Figures/Amazon0302-1.png}
+    \includegraphics[width=0.48\textwidth]{Figures/cit-Patents.png}
+    \caption{Amazon and cit-Patents benchmarks}
+    \label{fig:Amazon_CitPatents}
 \end{figure}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Figures/cit-Patents.png}
-    \caption{cit-Patents benchmark times for both algorithms}
-    \label{fig:cit-patents}
+	\centering
+	\includegraphics[width=0.48\textwidth]{Figures/tech-as-skitter.png} 
+        \includegraphics[width=0.48\textwidth]{Figures/web-Google.png} 
+        \includegraphics[width=0.48\textwidth]{Figures/WikiTalk.png} 
+        \caption{tech-as-skitter, web-Google and WikiTalk benchmarks}
+        \label{fig:skitter_google_wiki}
 \end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Figures/tech-as-skitter.png}
-    \caption{tech-as-skitter benchmark times for both algorithms}
-    \label{fig:tech-as-skitter}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Figures/web-Google.png}
-    \caption{web-Google benchmark times for both algorithms}
-    \label{fig:web-google}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Figures/WikiTalk.png}
-    \caption{WikiTalk benchmark times for both algorithms}
-    \label{fig:wikitalk}
-\end{figure} 
 
 The results consistently demonstrate that the depth-first search-based algorithm outperforms the degree-pruning algorithm significantly. Several factors contribute to this performance difference. 
 
