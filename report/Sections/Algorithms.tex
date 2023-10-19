@@ -14,7 +14,7 @@ Initially, the algorithm calculates the degree of every node and enqueues nodes 
 
 Considering that the algorithm permits the repeated insertion of a node up to its degree, the queue's size in the worst-case scenario will be the sum of the degrees of all nodes. It's established that the sum of the degrees of all nodes is limited by 2 times the number of edges. Consequently, the space required by the queue will be in the order of $O(E)$. Additionally, as the algorithm employs a vector of size $V$, the ultimate space complexity will be $O(V + E)$.
 
-The time complexity will depend on two factors: the dequeuing loop, which has a time complexity of $O(E)$, since in the worst case the queue will have a size of $O(E)$, and visiting the neighbours which has a time complexity of $O(E)$. Therefore, the final complexity will be $O(E)$.
+The time complexity will depend on two factors: the dequeuing loop, which has a time complexity of $O(E)$, since in the worst case the queue will have a size of $O(E)$, and visiting the neighbours which has a time complexity of $O(E)$. Therefore, the final complexity will be $O(E^2)$.
 
 \subsection{Depth-First Search Based Algorithm}
 
