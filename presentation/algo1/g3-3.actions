@@ -1,0 +1,45 @@
+push 0
+degree 0 2
+push 1
+degree 1 2
+degree 2 6
+degree 3 4
+degree 4 3
+degree 5 4
+degree 6 4
+degree 7 3
+push 8
+degree 8 2
+pop 0
+visit 1
+visit 2
+decrement 2
+clear 0
+pop 1
+visit 2
+decrement 2
+clear 1
+pop 8
+visit 5
+decrement 5
+visit 7
+decrement 7
+push 7
+clear 8
+pop 7
+visit 3
+decrement 3
+visit 5
+decrement 5
+push 5
+clear 7
+pop 5
+visit 2
+decrement 2
+visit 6
+decrement 6
+clear 5
+2
+3
+4
+6

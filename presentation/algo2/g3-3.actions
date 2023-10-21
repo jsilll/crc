@@ -1,0 +1,58 @@
+degree 0 2
+degree 1 2
+degree 2 6
+degree 3 4
+degree 4 3
+degree 5 4
+degree 6 4
+degree 7 3
+degree 8 2
+start vertex 0
+push 0
+visited 0
+pop 0
+decrement 1
+push 1
+visited 1
+decrement 2
+push 2
+visited 2
+pop 2
+push 5
+visited 5
+push 4
+visited 4
+push 3
+visited 3
+push 6
+visited 6
+pop 6
+pop 3
+push 7
+visited 7
+pop 7
+push 8
+visited 8
+pop 8
+decrement 5
+decrement 7
+pop 4
+pop 5
+pop 1
+decrement 0
+decrement 2
+check visited
+degree 2 4
+count 2 4
+degree 3 4
+count 3 3
+degree 4 3
+count 4 3
+degree 5 3
+count 5 2
+degree 6 4
+count 6 3
+2
+3
+4
+6
