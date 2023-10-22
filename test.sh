@@ -80,9 +80,11 @@ for out in tests/output/*; do
     echo -n "$test_case_name: "
 
     # Check if the output is correct with diff command
-    if diff -q $out $output > /dev/null; then
+    if diff -q $out $output > /tmp/diff; then
         echo -e "\e[32mOK\e[0m"
     else
         echo -e "\e[31mWRONG\e[0m"
+        echo "Diff:"
+        cat /tmp/diff
     fi
 done
